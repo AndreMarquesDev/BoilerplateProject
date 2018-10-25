@@ -1,0 +1,76 @@
+// Fonts //
+$font: 'Lato', sans-serif;
+$font-regular: 400;
+$font-bold: 700;
+
+// Colors //
+$White: #ffffff;
+$Black: #232c35;
+
+// Gradients //
+$classicGradient: linear-gradient(45deg, red, yellow, green);
+
+// Font Sizes //
+$font-giant: 48px;
+$font-xxl: 36px;
+$font-xl: 30px;
+$font-l: 24px;
+$font-m: 18px;
+$font-s: 14px;
+$font-xs: 12px;
+// Font Mobile //
+$font-giant-mobile: 30px;
+$font-xxl-mobile: 24px;
+$font-xl-mobile: 20px;
+$font-l-mobile: 18px;
+$font-m-mobile: 16px;
+$font-s-mobile: 14px;
+
+// Generic //
+body {
+    font-family: $font;
+    font-weight: $font-regular;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+strong, b {
+    font-weight: $font-bold;
+}
+
+em {
+    font-style: italic;
+}
+
+// Theme Base Background-Color //
+[data-theme="white"] {
+    background-color: $White;
+}
+
+[data-theme="classicGradient"] {
+    background: $classicGradient;
+}
+
+// Box-shadow //
+$box-shadow: 0px 50px 50px 0 rgba(35, 44, 53, 0.08);
+
+// Mobile blue outline remover //
+%outline {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+// Animations //
+
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

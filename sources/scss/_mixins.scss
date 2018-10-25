@@ -1,0 +1,21 @@
+// Transition
+@mixin transition($property:all, $duration:0.5s, $ease:linear, $delay:0s){
+    -webkit-transition: $property $duration $ease $delay;
+    -moz-transition: $property $duration $ease $delay;
+    -ms-transition: $property $duration $ease $delay;
+    -o-transition: $property $duration $ease $delay;
+    transition: $property $duration $ease $delay;
+}
+
+// Media Queries
+@mixin mq($smallerValue, $biggerValue) {
+	@media (min-width: #{$smallerValue}) and (max-width: $biggerValue) {
+		@content;
+	}
+}
+
+@mixin tablet() {
+	@media (min-width: 0) and (max-width: 768px) {
+		@content;
+	}
+}
