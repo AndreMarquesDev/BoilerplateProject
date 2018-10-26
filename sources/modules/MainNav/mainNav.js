@@ -18,7 +18,7 @@ project.mainNav = (() => {
         dummy: function () {
             const view = this;
 
-            console.log(view.el);
+            console.log('mainNav');
         }
     }
 

@@ -1,7 +1,8 @@
 var gulp = require('gulp'),
+    autoprefixer = require('gulp-autoprefixer'),
     babel = require('gulp-babel'),
     browser = require('browser-sync'),
-    autoprefixer = require('gulp-autoprefixer'),
+    concat = require('gulp-concat'),
     cssnano = require('gulp-cssnano'),
     index = require('gulp-index'),
     obfuscator = require('gulp-javascript-obfuscator'),
@@ -26,13 +27,8 @@ gulp.task('js', () => {
     .pipe(plumber()) // to avoid default behavior of exiting cmd line when error on script compilation
     .pipe(babel({presets: ['es2015']}))
     .pipe(rename({ dirname: '' }))
-    .pipe(gulp.dest('../scripts/'));
+    .pipe(gulp.dest('../scripts/core'));
 });
-
-// Uglify JS
-// gulp.task('obfuscate', () => {
-//   gulp.src('scripts/*.js').pipe(obfuscator()).pipe(gulp.dest('dist'));
-// });
 
 // Compile HTML
 gulp.task('modules', () => {
@@ -42,14 +38,13 @@ gulp.task('modules', () => {
     .pipe(gulp.dest('../html'));
 });
 
-// Build Template
-gulp.task('buildTemplate', () => {
-  gulp.src('../index.html')
-    .pipe(partials({ removeTags: true }))
-    .pipe(wrap({ src: 'indexTemplate.html' }))
-    .pipe(rename({ dirname: '' }))
-    .pipe(gulp.dest('../'))
-});
+// // Build Template
+// gulp.task('buildTemplate', () => {
+//   gulp.src('indexTemplate.html')
+//     .pipe(partials({removeTags: true}))
+//     .pipe(rename('index.html'))
+//     .pipe(gulp.dest('../'))
+// });
 
 // Build Modules Index
 gulp.task('html:buildIndex', () => {
@@ -103,7 +98,26 @@ gulp.task('browser-sync', () => {
   gulp.watch(['scss/*.scss', 'scss/**/*scss', 'modules/**/*.scss'], ['sass', browser.reload]);
   gulp.watch(['main.js', 'modules/**/*.js'], ['js', browser.reload]);
   gulp.watch('modules/**/*.html', ['modules', 'html:buildIndex', browser.reload]);
-  gulp.watch('../index.html', ['buildTemplate', browser.reload]);
 });
 
-gulp.task('default', ['sass', 'js', 'modules', 'html:buildIndex', 'buildTemplate', 'browser-sync']);
+gulp.task('default', ['sass', 'js', 'modules', 'html:buildIndex', 'browser-sync']);
+
+// Build tasks
+
+// Concat scripts
+gulp.task('concat', () => {
+  gulp.src('../scripts/core/*.js')
+    .pipe(concat('script.js'))
+    .pipe(obfuscator())
+    .pipe(gulp.dest('../scripts'));
+});
+
+// Uglify scripts
+gulp.task('uglify', () => {
+  return gulp.src('../scripts/script.js')
+    .pipe(obfuscator())
+    .pipe(rename({ dirname: '' }))
+    .pipe(gulp.dest('../scripts'));
+});
+
+gulp.task('build', ['concat', 'uglify']);

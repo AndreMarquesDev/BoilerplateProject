@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var project = project || {};
 
@@ -20,7 +20,7 @@ project.mainNav = function () {
         dummy: function dummy() {
             var view = this;
 
-            console.log(view.el);
+            console.log('mainNav');
         }
     };
 };
