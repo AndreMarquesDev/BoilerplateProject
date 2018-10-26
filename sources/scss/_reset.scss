@@ -37,7 +37,9 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 	touch-action: manipulation;
-
+	// Mobile blue outline remover //
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-tap-highlight-color: transparent;
 }
 
 ol, ul {
@@ -86,12 +88,6 @@ input[type=number] {
         margin: 0;
     }
 
-}
-
-// Mobile blue outline remover //
-html {
-	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-	-webkit-tap-highlight-color: transparent;
 }
 
 // Remove reveal icon in IE and Edge for password inputs //

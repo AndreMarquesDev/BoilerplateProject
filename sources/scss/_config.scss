@@ -4,52 +4,44 @@ $font-regular: 400;
 $font-bold: 700;
 
 // Colors //
-$White: #ffffff;
-$Black: #232c35;
+$white: #ffffff;
+$black: #232c35;
+$grey: #727d86;
+$mediumGrey: #acb8c1;
+$salmon: #f4555d;
+$orange: #fc9e00;
+$mustard: #f9cc4a;
+$oliveGreen: #8cd187;
+$aqua: #2fc9da;
 
 // Gradients //
-$classicGradient: linear-gradient(45deg, red, yellow, green);
+$primaryGradient: linear-gradient(126deg, $salmon, $orange 99%);
+$portugalGradient: linear-gradient(45deg, $salmon, $mustard, $oliveGreen);
 
 // Font Sizes //
-$font-giant: 48px;
+$font-giant: 56px;
 $font-xxl: 36px;
 $font-xl: 30px;
 $font-l: 24px;
-$font-m: 18px;
-$font-s: 14px;
-$font-xs: 12px;
-// Font Mobile //
+$font-m: 17px;
+$font-s: 15px;
+$font-xs: 11px;
+// Font Sizes Mobile //
 $font-giant-mobile: 30px;
 $font-xxl-mobile: 24px;
-$font-xl-mobile: 20px;
-$font-l-mobile: 18px;
-$font-m-mobile: 16px;
-$font-s-mobile: 14px;
-
-// Generic //
-body {
-    font-family: $font;
-    font-weight: $font-regular;
-    -webkit-font-smoothing: antialiased;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-	-webkit-tap-highlight-color: transparent;
-}
-
-strong, b {
-    font-weight: $font-bold;
-}
-
-em {
-    font-style: italic;
-}
+$font-xl-mobile: 24px;
+$font-l-mobile: 17px;
+$font-m-mobile: 17px;
+$font-s-mobile: 15px;
+$font-xs-mobile: 11px;
 
 // Theme Base Background-Color //
-[data-theme="white"] {
-    background-color: $White;
+[data-theme="black"] {
+    background-color: $black;
 }
 
-[data-theme="classicGradient"] {
-    background: $classicGradient;
+[data-theme="primaryGradient"] {
+    background: $primaryGradient;
 }
 
 // Box-shadow //

@@ -6,10 +6,14 @@ html {
 
 body {
     min-height: 100%;
+    height: 100%;
     width: 100%;
     display: block;
     position: relative;
     margin: 0;
+    font-family: $font;
+    font-weight: $font-regular;
+    -webkit-font-smoothing: antialiased;
 }
 
 .wrapper {
@@ -18,7 +22,7 @@ body {
     margin: 0 auto;
     padding: 0 40px;
 
-    @include mq(0, 768px){
+    @include mq(0, 767px){
         padding: 0 20px;
     }
 
@@ -30,28 +34,28 @@ section {
     // Data-margin-top //
     &[data-margin-top="80"] {
         padding-top: 80px;
-        @include mq(0, 768px) {
+        @include mq(0, 767px) {
             padding-top: 40px;
         }
     }
 
     &[data-margin-top="60"] {
         padding-top: 60px;
-        @include mq(0, 768px) {
+        @include mq(0, 767px) {
             padding-top: 30px;
         }
     }
 
     &[data-margin-top="40"] {
         padding-top: 40px;
-        @include mq(0, 768px) {
+        @include mq(0, 767px) {
             padding-top: 20px;
         }
     }
 
     &[data-margin-top="20"] {
         padding-top: 20px;
-        @include mq(0, 768px) {
+        @include mq(0, 767px) {
             padding-top: 10px;
         }
     }
@@ -63,28 +67,28 @@ section {
     // Data-margin-bottom //
     &[data-margin-bottom="80"] {
         padding-bottom: 80px;
-        @include mq(0, 768px) {
+        @include mq(0, 767px) {
             padding-bottom: 40px;
         }
     }
 
     &[data-margin-bottom="60"] {
         padding-bottom: 60px;
-        @include mq(0, 768px) {
+        @include mq(0, 767px) {
             padding-bottom: 30px;
         }
     }
 
     &[data-margin-bottom="40"] {
         padding-bottom: 40px;
-        @include mq(0, 768px){
+        @include mq(0, 767px){
             padding-bottom: 20px;
         }
     }
 
     &[data-margin-bottom="20"] {
         padding-bottom: 20px;
-        @include mq(0, 768px) {
+        @include mq(0, 767px) {
             padding-bottom: 10px;
         }
     }
@@ -93,4 +97,12 @@ section {
         padding-bottom: 0;
     }
 
+}
+
+strong, b {
+    font-weight: $font-bold;
+}
+
+em {
+    font-style: italic;
 }

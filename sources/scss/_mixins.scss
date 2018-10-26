@@ -1,5 +1,5 @@
 // Transition
-@mixin transition($property:all, $duration:0.5s, $ease:linear, $delay:0s){
+@mixin transition($property: all, $duration: 0.5s, $ease: linear, $delay: 0s) {
     -webkit-transition: $property $duration $ease $delay;
     -moz-transition: $property $duration $ease $delay;
     -ms-transition: $property $duration $ease $delay;
@@ -15,7 +15,89 @@
 }
 
 @mixin tablet() {
-	@media (min-width: 0) and (max-width: 768px) {
+	@media (min-width: 0) and (max-width: 767px) {
 		@content;
 	}
+}
+
+// Fonts
+
+@mixin font-giant() {
+    font-family: $font;
+    font-size: $font-giant;
+    line-height: 70px;
+    letter-spacing: -0.6px;
+    @include mq(0, 767px) {
+        font-size: $font-giant-mobile;
+        line-height: 40px;
+        letter-spacing: -0.3px;
+    }
+}
+
+@mixin font-xxl() {
+    font-family: $font;
+    font-size: $font-xxl;
+    line-height: 42px;
+    letter-spacing: -0.3px;
+    @include mq(0, 767px) {
+        font-size: $font-xxl-mobile;
+        line-height: 33px;
+        letter-spacing: -0.2px;
+    }
+}
+
+@mixin font-xl() {
+    font-family: $font;
+    font-size: $font-xl;
+    line-height: 40px;
+    letter-spacing: -0.3px;
+    @include mq(0, 767px) {
+        font-size: $font-xl-mobile;
+        line-height: 33px;
+        letter-spacing: -0.2px;
+    }
+}
+
+@mixin font-l() {
+    font-family: $font;
+    font-size: $font-l;
+    line-height: 33px;
+    letter-spacing: -0.2px;
+    @include mq(0, 767px) {
+        font-size: $font-l-mobile;
+        line-height: 26px;
+        letter-spacing: -0.1px;
+    }
+}
+
+@mixin font-m() {
+    font-family: $font;
+    font-size: $font-m;
+    line-height: 26px;
+    letter-spacing: -0.1px;
+    @include mq(0, 767px) {
+        font-size: $font-m-mobile;
+        line-height: 26px;
+        letter-spacing: -0.1px;
+    }
+}
+
+@mixin font-s() {
+    font-family: $font;
+    font-size: $font-s;
+    line-height: 24px;
+    @include mq(0, 767px) {
+        font-size: $font-s-mobile;
+        line-height: 24px;
+    }
+}
+
+@mixin font-xs() {
+    font-family: $font;
+    font-size: $font-xs;
+    line-height: 17px;
+    @include mq(0, 767px) {
+        font-size: $font-xs-mobile;
+        line-height: 17px;
+    }
 }

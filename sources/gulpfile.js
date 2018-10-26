@@ -1,58 +1,63 @@
 var gulp = require('gulp'),
-    wrap = require('gulp-wrap'),
-    sass = require('gulp-sass'),
-    uglify = require('gulp-uglify'),
-    rename = require('gulp-rename'),
-    cssnano = require('gulp-cssnano'),
-    browser = require('browser-sync'),
-    partials = require('gulp-inject-partials'),
-    autoprefixer = require('gulp-autoprefixer'),
     babel = require('gulp-babel'),
+    browser = require('browser-sync'),
+    autoprefixer = require('gulp-autoprefixer'),
+    cssnano = require('gulp-cssnano'),
+    index = require('gulp-index'),
+    obfuscator = require('gulp-javascript-obfuscator'),
+    partials = require('gulp-inject-partials'),
     plumber = require('gulp-plumber'),
-    index = require('gulp-index');
+    rename = require('gulp-rename'),
+    sass = require('gulp-sass'),
+    wrap = require('gulp-wrap');
 
 // Compile SASS
 gulp.task('sass', () => {
-  gulp.watch(['scss/*.scss', 'scss/**/*scss', 'modules/**/scss/*.scss']).on('change', () => {
-    return gulp.src('scss/main.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(cssnano())
-    .pipe(autoprefixer({ gulpbrowsers: ['last 2 versions'] }))
-    .pipe(rename({dirname: ''}))
-    .pipe(gulp.dest('../css'))
-    .pipe(browser.reload({ stream: true }));
-  });
+  return gulp.src('scss/main.scss')
+  .pipe(sass().on('error', sass.logError))
+  .pipe(cssnano())
+  .pipe(autoprefixer({ gulpbrowsers: ['last 2 versions'] }))
+  .pipe(gulp.dest('../css'));
 });
 
 // Compile JS
 gulp.task('js', () => {
-  gulp.watch('modules/**/scripts/*.js').on('change', (file) => {
-    gulp.src(file.path)
-      //.pipe(uglify())
-      .pipe(plumber()) // to avoid default behavior of exiting cmd line when error on script compilation
-      .pipe(babel({presets: ['es2015']}))
-      .pipe(rename({ dirname: '' }))
-      .pipe(gulp.dest('../scripts'))
-      .pipe(browser.reload({ stream: true, once: true }));
-  });
+  return gulp.src(['main.js', 'modules/**/*.js'])
+    .pipe(plumber()) // to avoid default behavior of exiting cmd line when error on script compilation
+    .pipe(babel({presets: ['es2015']}))
+    .pipe(rename({ dirname: '' }))
+    .pipe(gulp.dest('../scripts/'));
 });
 
+// Uglify JS
+// gulp.task('obfuscate', () => {
+//   gulp.src('scripts/*.js').pipe(obfuscator()).pipe(gulp.dest('dist'));
+// });
+
+// Compile HTML
 gulp.task('modules', () => {
-  gulp.watch('modules/**/*.html').on('change', (file) => {
-    gulp.src(file.path)
-      .pipe(wrap({ src: 'moduleTemplate.html' }))
-      .pipe(rename({ dirname: '' }))
-      .pipe(gulp.dest('../html'))
-      .pipe(browser.reload({ stream: true }));
-  });
+  gulp.src('modules/**/*.html')
+    .pipe(wrap({ src: 'moduleTemplate.html' }))
+    .pipe(rename({ dirname: '' }))
+    .pipe(gulp.dest('../html'));
 });
 
+// Build Template
+gulp.task('buildTemplate', () => {
+  gulp.src('../index.html')
+    .pipe(partials({ removeTags: true }))
+    .pipe(wrap({ src: 'indexTemplate.html' }))
+    .pipe(rename({ dirname: '' }))
+    .pipe(gulp.dest('../'))
+});
+
+// Build Modules Index
 gulp.task('html:buildIndex', () => {
-  gulp.watch('modules/**/*.html').on('change', () => {
-    return gulp.src('../html/*.*')
-    .pipe(index({
-      // written out before index contents
-      'prepend-to-output': () => `<head>
+  return gulp.src('../html/*.*')
+  .pipe(index({
+    // written out before index contents
+    'prepend-to-output': () => `
+      <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale = 1.0, shrink-to-fit=no">
         <link rel="stylesheet" href="../css/main.css">
       </head>
@@ -60,9 +65,8 @@ gulp.task('html:buildIndex', () => {
         <style>
           li {
             display: inline-block;
-            font-size: 20px;
-            margin-left: 50px;
-            margin-bottom: 5px;
+            margin-left: 10px;
+            margin-top: 10px;
             border-bottom: 1px solid black;
             transition: border-bottom 0.2s ease-in-out;
           }
@@ -72,44 +76,34 @@ gulp.task('html:buildIndex', () => {
           }
 
           a {
-            color: black;
             text-decoration: none;
           }
 
         </style>`,
-       // written out after index contents
-      'append-to-output': () => `</body>`,
-      // 'item-template': (filepath, filename) => `<li class="index__item"><a class="index__item-link" href="${filepath}${filename}">${filepath}${filename}</a></li>`,
-      'item-template': (filepath) => `<li class="index__item"><a class="index__item-link" href="${filepath}">${filepath.split('html')[1]}</a></li>`,
-      'section-heading-template' : (heading) => ''
-    }))
-    .pipe(gulp.dest('../html'))
-    .pipe(browser.reload({ stream: true }));
-  });
+    // written out after index contents
+    'append-to-output': () => `</body>`,
+    // Title for the index page
+    'title': 'Modules Index',
+    // Section heading function used to construct each section heading
+    'section-heading-template': () => '',
+    // Item function used to construct each list item
+    'item-template': (filepath) => `<li class="index__item"><a class="index__item-link" href="${filepath}">${filepath.split('html')[1].split('.')[0].split('\\')[1]}</a></li>`
+  }))
+  .pipe(gulp.dest('../html'))
 });
 
-// gulp.task('templates', () => {
-//   gulp.src('templates/*.html')
-//     .pipe(partials({ removeTags: true }))
-//     .pipe(wrap({ src: 'layout.html' }))
-//     .pipe(rename({ dirname: '' }))
-//     .pipe(gulp.dest('../html/templates'))
-//     .pipe(browser.reload({ stream: true }));
-// });
-
+// Browser Sync
 gulp.task('browser-sync', () => {
   browser.init(null, {
     server: {
-      baseDir: '../',
+      baseDir: "../"
     },
     startPath: 'html/index.html'
   });
-
+  gulp.watch(['scss/*.scss', 'scss/**/*scss', 'modules/**/*.scss'], ['sass', browser.reload]);
+  gulp.watch(['main.js', 'modules/**/*.js'], ['js', browser.reload]);
+  gulp.watch('modules/**/*.html', ['modules', 'html:buildIndex', browser.reload]);
+  gulp.watch('../index.html', ['buildTemplate', browser.reload]);
 });
 
-gulp.task('watch', () => {
-  gulp.watch('templates/**/*.html', ['templates']);
-});
-
-gulp.task('default', ['sass', 'js', 'modules', 'html:buildIndex', 'watch', 'browser-sync']);
-//gulp.task('default', ['sass', 'js', 'modules', 'templates', 'watch', 'html:buildIndex', 'browser-sync']);
+gulp.task('default', ['sass', 'js', 'modules', 'html:buildIndex', 'buildTemplate', 'browser-sync']);
