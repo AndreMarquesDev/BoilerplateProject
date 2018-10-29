@@ -25,7 +25,7 @@ gulp.task('sass', () => {
 gulp.task('js', () => {
   return gulp.src(['main.js', 'modules/**/*.js'])
     .pipe(plumber()) // to avoid default behavior of exiting cmd line when error on script compilation
-    .pipe(babel({presets: ['es2015']}))
+    .pipe(babel({presets: ['@babel/preset-env']}))
     .pipe(rename({ dirname: '' }))
     .pipe(gulp.dest('../scripts/core'));
 });
@@ -50,6 +50,8 @@ gulp.task('modules', () => {
 gulp.task('html:buildIndex', () => {
   return gulp.src('../html/*.*')
   .pipe(index({
+    // Title for the index page
+    'title': 'Modules Index',
     // written out before index contents
     'prepend-to-output': () => `
       <head>
@@ -59,30 +61,24 @@ gulp.task('html:buildIndex', () => {
       <body>
         <style>
           li {
-            display: inline-block;
             margin-left: 10px;
             margin-top: 10px;
-            border-bottom: 1px solid black;
-            transition: border-bottom 0.2s ease-in-out;
-          }
-
-          li:hover {
-            border-bottom: 1px solid transparent;
-          }
-
-          a {
-            text-decoration: none;
           }
 
         </style>`,
     // written out after index contents
     'append-to-output': () => `</body>`,
-    // Title for the index page
-    'title': 'Modules Index',
     // Section heading function used to construct each section heading
     'section-heading-template': () => '',
     // Item function used to construct each list item
-    'item-template': (filepath) => `<li class="index__item"><a class="index__item-link" href="${filepath}">${filepath.split('html')[1].split('.')[0].split('\\')[1]}</a></li>`
+    'item-template': (filepath, filename) =>
+      `<li class="index__item">
+        <a class="index__item-link" href="${filename}">${filename.split('.html')[0]}</a>
+      </li>`,
+    // folders to use as heading, affected by 'relativePath'
+    'pathDepth': 1,
+    // part of path to discard e.g. './src/client' when creating index
+    'relativePath': '../'
   }))
   .pipe(gulp.dest('../html'))
 });

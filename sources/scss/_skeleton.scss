@@ -99,6 +99,11 @@ section {
 
 }
 
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
 strong, b {
     font-weight: $font-bold;
 }
