@@ -12,7 +12,7 @@ body {
     position: relative;
     margin: 0;
     font-family: $font;
-    font-weight: $font-regular;
+    font-weight: $fontRegular;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -105,7 +105,7 @@ a {
 }
 
 strong, b {
-    font-weight: $font-bold;
+    font-weight: $fontBold;
 }
 
 em {

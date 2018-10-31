@@ -1,7 +1,7 @@
 // Fonts //
 $font: 'Lato', sans-serif;
-$font-regular: 400;
-$font-bold: 700;
+$fontRegular: 400;
+$fontBold: 700;
 
 // Colors //
 $white: #ffffff;
@@ -19,21 +19,21 @@ $primaryGradient: linear-gradient(126deg, $salmon, $orange 99%);
 $portugalGradient: linear-gradient(45deg, $salmon, $mustard, $oliveGreen);
 
 // Font Sizes //
-$font-giant: 56px;
-$font-xxl: 36px;
-$font-xl: 30px;
-$font-l: 24px;
-$font-m: 17px;
-$font-s: 15px;
-$font-xs: 11px;
+$fontGiant: 56px;
+$fontXXL: 36px;
+$fontXL: 30px;
+$fontL: 24px;
+$fontM: 17px;
+$fontS: 15px;
+$fontXS: 11px;
 // Font Sizes Mobile //
-$font-giant-mobile: 30px;
-$font-xxl-mobile: 24px;
-$font-xl-mobile: 24px;
-$font-l-mobile: 17px;
-$font-m-mobile: 17px;
-$font-s-mobile: 15px;
-$font-xs-mobile: 11px;
+$fontGiantMobile: 30px;
+$fontXXLMobile: 24px;
+$fontXLMobile: 24px;
+$fontLMobile: 17px;
+$fontMMobile: 17px;
+$fontSMobile: 15px;
+$fontXSMobile: 11px;
 
 // Theme Base Background-Color //
 [data-theme="black"] {
@@ -45,7 +45,7 @@ $font-xs-mobile: 11px;
 }
 
 // Box-shadow //
-$box-shadow: 0px 50px 50px 0 rgba(35, 44, 53, 0.08);
+$boxShadow: 0px 50px 50px 0 rgba(35, 44, 53, 0.08);
 
 // Mobile blue outline remover //
 %outline {
