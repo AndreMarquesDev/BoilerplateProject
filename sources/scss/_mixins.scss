@@ -1,5 +1,5 @@
 // Transition
-@mixin transition($property: all, $duration: 0.2s, $ease: ease, $delay: 0s) {
+@mixin transition($property: all, $duration: .2s, $ease: ease, $delay: 0s) {
     -webkit-transition: $property $duration $ease $delay;
     -moz-transition: $property $duration $ease $delay;
     -ms-transition: $property $duration $ease $delay;
@@ -20,6 +20,12 @@
 	}
 }
 
+@mixin mobile() {
+	@media (min-width: 0) and (max-width: 511px) {
+		@content;
+	}
+}
+
 // Fonts
 
 @mixin fontGiant() {
@@ -27,7 +33,7 @@
     font-size: $fontGiant;
     line-height: 70px;
     letter-spacing: -0.6px;
-    @include mq(0, 767px) {
+    @include tablet {
         font-size: $fontGiantMobile;
         line-height: 40px;
         letter-spacing: -0.3px;
@@ -39,7 +45,7 @@
     font-size: $fontXXL;
     line-height: 42px;
     letter-spacing: -0.3px;
-    @include mq(0, 767px) {
+    @include tablet {
         font-size: $fontXXLMobile;
         line-height: 33px;
         letter-spacing: -0.2px;
@@ -51,7 +57,7 @@
     font-size: $fontXL;
     line-height: 40px;
     letter-spacing: -0.3px;
-    @include mq(0, 767px) {
+    @include tablet {
         font-size: $fontXLMobile;
         line-height: 33px;
         letter-spacing: -0.2px;
@@ -63,7 +69,7 @@
     font-size: $fontL;
     line-height: 33px;
     letter-spacing: -0.2px;
-    @include mq(0, 767px) {
+    @include tablet {
         font-size: $fontLMobile;
         line-height: 26px;
         letter-spacing: -0.1px;
@@ -75,9 +81,9 @@
     font-size: $fontM;
     line-height: 26px;
     letter-spacing: -0.1px;
-    @include mq(0, 767px) {
+    @include tablet {
         font-size: $fontMMobile;
-        line-height: 26px;
+        line-height: 24px;
         letter-spacing: -0.1px;
     }
 }
@@ -86,18 +92,10 @@
     font-family: $font;
     font-size: $fontS;
     line-height: 24px;
-    @include mq(0, 767px) {
-        font-size: $fontSMobile;
-        line-height: 24px;
-    }
 }
 
 @mixin fontXS() {
     font-family: $font;
     font-size: $fontXS;
     line-height: 17px;
-    @include mq(0, 767px) {
-        font-size: $fontXSMobile;
-        line-height: 17px;
-    }
 }

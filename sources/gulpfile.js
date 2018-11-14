@@ -10,11 +10,13 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass'),
+    sassGlob = require('gulp-sass-glob'),
     wrap = require('gulp-wrap');
 
 // Compile SASS
 gulp.task('sass', () => {
   return gulp.src('scss/main.scss')
+  .pipe(sassGlob())
   .pipe(sass().on('error', sass.logError))
   .pipe(cssnano())
   .pipe(autoprefixer({ gulpbrowsers: ['last 2 versions'] }))

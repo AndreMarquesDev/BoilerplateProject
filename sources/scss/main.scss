@@ -8,6 +8,4 @@
 
 // Module imports //
 
-@import '../modules/Content/content';
-@import '../modules/MainNav/mainNav';
-@import '../modules/Footer/footer';
+@import '../modules/**/*.scss';

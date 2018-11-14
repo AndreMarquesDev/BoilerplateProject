@@ -51,7 +51,6 @@ blockquote, q {
 }
 
 blockquote:before, blockquote:after, q:before, q:after {
-	content: '';
 	content: none;
 }
 
@@ -60,11 +59,12 @@ table {
 	border-spacing: 0;
 }
 
-i {
+i, em {
 	font-style: italic;
 }
-b {
-	font-weight: 700;
+
+strong, b {
+    font-weight: 700;
 }
 
 input, input:before, input:after {
