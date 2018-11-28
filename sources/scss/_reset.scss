@@ -37,6 +37,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 	touch-action: manipulation;
+    outline: none;
 	// Mobile blue outline remover //
 	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 	-webkit-tap-highlight-color: transparent;
@@ -84,6 +85,7 @@ button {
     border: none;
 	margin: 0;
     padding: 0;
+    outline: none;
 }
 
 input, textarea {
