@@ -4,18 +4,19 @@ project.mainNav = (() => {
 
     return {
 
-        init: function (element, data) {
+        init: function(element) {
             const view = this;
-                view.el = $(element);
-                view.variables();
-                view.dummy();
+            view.el = element;
+
+            view.variables();
+            view.dummy();
         },
 
-        variables: function () {
+        variables: function() {
             const view = this;
         },
 
-        dummy: function () {
+        dummy: function() {
             const view = this;
 
             console.log('mainNav');

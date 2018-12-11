@@ -7,23 +7,21 @@ var project = project || {};
 project.main = function () {
   return {
     init: function init(selector) {
+      project.utils().init();
       typeof selector == 'undefined' && (selector = '');
-      $(selector + '[data-script]').not('[data-auto-init="false"]').each(function (index, elem) {
-        var data = $(elem).data(),
-            script = data.script;
+      document.querySelectorAll("".concat(selector, "[data-script]:not([data-auto-init=\"false\"])")).forEach(function (element) {
+        var script = element.dataset.script;
         if (!project[script]) return;
 
         if (typeof project[script] === 'function') {
-          var obj = new project[script]();
-          obj.init(elem, data);
-        } else if (_typeof(project[script]) === 'object') {
-          project[script].init(elem, data);
-        }
+          var scriptsObject = new project[script]();
+          scriptsObject.init(element);
+        } else if (_typeof(project[script]) === 'object') project[script].init(element);
       });
     }
   };
-}();
+};
 
 document.addEventListener('DOMContentLoaded', function () {
-  project.main.init();
+  return project.main().init();
 });

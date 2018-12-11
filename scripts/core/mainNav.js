@@ -4,9 +4,9 @@ var project = project || {};
 
 project.mainNav = function () {
   return {
-    init: function init(element, data) {
+    init: function init(element) {
       var view = this;
-      view.el = $(element);
+      view.el = element;
       view.variables();
       view.dummy();
     },
