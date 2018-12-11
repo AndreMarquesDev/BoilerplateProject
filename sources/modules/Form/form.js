@@ -1,6 +1,6 @@
 const project = project || {};
 
-project.mainNav = (() => {
+project.form = (() => {
 
     return {
 
@@ -19,7 +19,7 @@ project.mainNav = (() => {
         dummy() {
             const view = this;
 
-            console.log('mainNav');
+            console.log('form');
         }
     }
 

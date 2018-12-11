@@ -3,7 +3,7 @@ const project = project || {};
 project.main = () => {
 
     return {
-        init: (selector) => {
+        init(selector) {
             project.utils().init();
 
             (typeof selector == 'undefined') && (selector = '');

@@ -4,13 +4,13 @@ project.utils = (() => {
 
     return {
 
-        init: function() {
+        init() {
             const view = this;
 
             view.polyfills();
         },
 
-        polyfills: () => {
+        polyfills() {
             // Matches polyfill
             if (!Element.prototype.matches) {
                 Element.prototype.matches =
@@ -58,7 +58,7 @@ project.utils = (() => {
             };
         },
 
-        initHover3D: (container, inner) => {
+        initHover3D(container, inner) {
             // Setup
 
             // <div class="container">
