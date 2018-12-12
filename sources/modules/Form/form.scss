@@ -1,24 +1,149 @@
 .form {
     background: $mediumGrey;
+    @include fontM;
+
+    // form {
+    //     width: 100%;
+    //     color: white;
+    //     font-size: 20px;
+    //     text-align: center;
+    //     padding: 80px 0;
+
+    //     input, textarea {
+    //         background: $white;
+    //         margin: 0 0 10px 10px;
+    //         padding: 5px;
+    //     }
+
+    //     button {
+    //         background: $white;
+    //         padding: 5px;
+    //     }
+
+    // }
+
+    h2 {
+        @include fontGiant;
+        font-weight: $fontBold;
+        text-align: center;
+        letter-spacing: 3px;
+        color: $white;
+        margin-bottom: 80px;
+    }
 
     form {
-        width: 100%;
-        color: white;
-        font-size: 20px;
-        text-align: center;
-        padding: 80px 0;
+        max-width: 700px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: auto;
+        @include transition;
+
+        // first two
+        > :nth-child(-n + 2) {
+            flex-basis: 47%;
+        }
+
+        // third and onwards
+        > :nth-child(n + 3):not(button) {
+            flex-basis: 100%;
+        }
 
         input, textarea {
-            background: $white;
-            margin: 0 0 10px 10px;
-            padding: 5px;
+            @include fontM;
+            color: $white;
+            border-bottom: 1px solid $black;
+            margin-bottom: 20px;
+            padding-left: 5px;
+            padding-bottom: 10px;
+        }
+
+        textarea {
+            height: 110px;
+        }
+
+        // Placeholders
+        ::-webkit-input-placeholder {
+            @include fontM;
+            color: $white;
+            font-style: italic;
+        }
+        ::-moz-placeholder {
+            @include fontM;
+            color: $white;
+            font-style: italic;
+        }
+        :-moz-placeholder {
+            @include fontM;
+            color: $white;
+            font-style: italic;
+        }
+        :-ms-input-placeholder {
+            @include fontM;
+            color: $white;
+            font-style: italic;
+        }
+
+        :focus::-webkit-input-placeholder {
+            opacity: 0;
+            transition: opacity .3s ease;
+            @include transition ($property: opacity, $duration: .3s, $ease: ease);
         }
 
         button {
-            background: $white;
-            padding: 5px;
+            display: block;
+            margin: auto;
+            @include fontS;
+            color: $white;
+            text-transform: uppercase;
+            border: 1px solid $white;
+            border-radius: 10px;
+            padding: 10px 25px;
+            @include transition ($ease: ease-in-out);
+            box-shadow: rgba(45,45,45,0.05) 0px 2px 2px, rgba(49,49,49,0.05) 0px 4px 4px, rgba(42,42,42,0.05) 0px 8px 8px, rgba(32,32,32,0.05) 0px 16px 16px;;
+            cursor: pointer;
+
+            &:hover {
+                box-shadow: 0 2px 2px rgba(45,45,45,.03), 0 0 4px rgba(49,49,49,.03), 0 0 8px rgba(42,42,42,.03), 0 0px 16px rgba(32,32,32,.03);;
+            }
+
         }
 
+        &.hide {
+            height: 0;
+            opacity: 0;
+        }
+
+    }
+
+    .formNotification {
+        width: 100%;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        transform: translateY(100%);
+        color: $white;
+        text-align: center;
+        padding: 30px;
+        @include transition ($duration: .5s);
+        z-index: 1;
+
+        &.success {
+            background: $oliveGreen;
+            transform: translateY(0);
+        }
+
+    }
+
+    @include mobile {
+        form > :nth-child(-n + 2) {
+            flex-basis: 100%;
+
+            input, textarea {
+                width: 95%;
+            }
+
+        }
     }
 
 }
