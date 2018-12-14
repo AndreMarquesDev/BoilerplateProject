@@ -1,0 +1,99 @@
+// Fonts //
+$font: 'Lato', sans-serif;
+$fontRegular: 400;
+$fontBold: 700;
+
+// Font Sizes //
+$fontGiant: 56px;
+$fontXXL: 36px;
+$fontXL: 30px;
+$fontL: 24px;
+$fontM: 17px;
+$fontS: 15px;
+$fontXS: 11px;
+// Font Sizes Mobile //
+$fontGiantMobile: 30px;
+$fontXXLMobile: 24px;
+$fontXLMobile: 24px;
+$fontLMobile: 17px;
+$fontMMobile: 15px;
+
+// Font mixins //
+@mixin fontGiant($color: $black) {
+    font-family: $font;
+    font-size: $fontGiant;
+    line-height: 70px;
+    letter-spacing: -0.6px;
+    color: $color;
+    @include tablet {
+        font-size: $fontGiantMobile;
+        line-height: 40px;
+        letter-spacing: -0.3px;
+    }
+}
+
+@mixin fontXXL($color: $black) {
+    font-family: $font;
+    font-size: $fontXXL;
+    line-height: 42px;
+    letter-spacing: -0.3px;
+    color: $color;
+    @include tablet {
+        font-size: $fontXXLMobile;
+        line-height: 33px;
+        letter-spacing: -0.2px;
+    }
+}
+
+@mixin fontXL($color: $black) {
+    font-family: $font;
+    font-size: $fontXL;
+    line-height: 40px;
+    letter-spacing: -0.3px;
+    color: $color;
+    @include tablet {
+        font-size: $fontXLMobile;
+        line-height: 33px;
+        letter-spacing: -0.2px;
+    }
+}
+
+@mixin fontL($color: $black) {
+    font-family: $font;
+    font-size: $fontL;
+    line-height: 33px;
+    letter-spacing: -0.2px;
+    color: $color;
+    @include tablet {
+        font-size: $fontLMobile;
+        line-height: 26px;
+        letter-spacing: -0.1px;
+    }
+}
+
+@mixin fontM($color: $black) {
+    font-family: $font;
+    font-size: $fontM;
+    line-height: 26px;
+    letter-spacing: -0.1px;
+    color: $color;
+    @include tablet {
+        font-size: $fontMMobile;
+        line-height: 24px;
+        letter-spacing: -0.1px;
+    }
+}
+
+@mixin fontS($color: $black) {
+    font-family: $font;
+    font-size: $fontS;
+    line-height: 24px;
+    color: $color;
+}
+
+@mixin fontXS($color: $black) {
+    font-family: $font;
+    font-size: $fontXS;
+    line-height: 17px;
+    color: $color;
+}

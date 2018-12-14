@@ -1,0 +1,120 @@
+.slider {
+    @include fontM;
+    color: $white;
+    text-align: center;
+    overflow: hidden;
+
+    .glide {
+        color: red;
+    }
+
+    .glide__arrow--left {
+        left: -50px;
+    }
+
+    .glide__arrow--right {
+        right: -50px;
+    }
+
+    h3 {
+        @include fontXXL;
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        margin-bottom: 40px;
+    }
+
+    .slick-slide {
+        margin: 0 20px;
+    }
+
+    li {
+        height: 450px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+
+        &:not(.noOverlay):before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            @include transition ($duration: .35s);
+        }
+
+        img, video, iframe {
+            width: auto;
+            height: 100%;
+        }
+
+        p {
+            width: 100%;
+            display: none;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            @include fontXL;
+            color: $white;
+            font-weight: $fontBold;
+            margin: auto;
+            z-index: 1;
+        }
+
+        &:hover {
+            &:not(.noOverlay):before {
+                background: rgba($color: $black, $alpha: 0.4);
+                z-index: 1;
+            }
+
+            p {
+                display: block;
+            }
+
+        }
+
+    }
+
+    @include tablet {
+        .wrapper {
+            padding: 0 40px;
+        }
+
+        .slick-slide {
+            margin: 0 10px;
+        }
+
+        li {
+            height: 300px;
+
+            p {
+                width: 75%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+        }
+
+    }
+
+    @include mq (0, 420px) {
+
+        li {
+            max-width: 300px;
+
+            img {
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            video {
+                width: calc(100% - 80px); // 80px being wrapper's padding
+            }
+
+        }
+
+    }
+
+}

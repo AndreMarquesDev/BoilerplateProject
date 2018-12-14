@@ -1,38 +1,3 @@
-// Fonts //
-$font: 'Lato', sans-serif;
-$fontRegular: 400;
-$fontBold: 700;
-
-// Colors //
-$white: #ffffff;
-$black: #232c35;
-$grey: #727d86;
-$mediumGrey: #acb8c1;
-$salmon: #f4555d;
-$orange: #fc9e00;
-$mustard: #f9cc4a;
-$oliveGreen: #8cd187;
-$aqua: #2fc9da;
-
-// Gradients //
-$primaryGradient: linear-gradient(126deg, $salmon, $orange 99%);
-$portugalGradient: linear-gradient(45deg, $salmon, $mustard, $oliveGreen);
-
-// Font Sizes //
-$fontGiant: 56px;
-$fontXXL: 36px;
-$fontXL: 30px;
-$fontL: 24px;
-$fontM: 17px;
-$fontS: 15px;
-$fontXS: 11px;
-// Font Sizes Mobile //
-$fontGiantMobile: 30px;
-$fontXXLMobile: 24px;
-$fontXLMobile: 24px;
-$fontLMobile: 17px;
-$fontMMobile: 15px;
-
 // Theme Base Background-Color //
 [data-theme="black"] {
     background-color: $black;
@@ -49,18 +14,4 @@ $boxShadow: 0px 50px 50px 0 rgba(35, 44, 53, 0.08);
 %outline {
 	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 	-webkit-tap-highlight-color: transparent;
-}
-
-// Animations //
-
-@keyframes backgroundAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
 }
