@@ -6,29 +6,11 @@ project.slider = (() => {
 
         init(element) {
             const view = this;
-            view.$el = $(element);
             view.el = element;
 
             view.variables();
-            // view.events();
-            // view.initSlider();
-
-            // new Glide('.glide').mount();
-            new Glide('#teste1', {
-                type: 'carousel',
-                perView: 3,
-                focusAt: 'center',
-                gap: 40
-            }).mount();
-            // new Glide('#teste2', {
-            //     type: 'carousel',
-            //     perView: 1,
-            //     // focusAt: 'center',
-            //     gap: 10
-            // }).mount();
-
-            document.querySelectorAll('.glide__slides li').forEach(element => element.style.width = '');
-
+            view.events();
+            view.initSlider();
         },
 
         variables() {
@@ -47,27 +29,33 @@ project.slider = (() => {
         initSlider() {
             const view = this;
 
-            view.sliderContainer = view.$el.find('.slider__sliderContainer');
-
-            // Stop Youtube videos from autoplaying on init (because the 'autoplay' option might be in the url unintendedly) except for currentSlide
-            view.sliderContainer.on('init', () => {
-                view.el.querySelectorAll('iframe').forEach(element => {
-                    element.closest('.slick-current')
-                        ? window.innerWidth > 767 && view.playYoutube(element)
-                        : view.pauseYoutube(element);
-                });
+            const slider = new Flickity(view.el.querySelector('ul'), {
+                wrapAround: true,
+                imagesLoaded: true,
+                pageDots: false,
+                arrowShape: {
+                    x0: 10,
+                    x1: 60, y1: 50,
+                    x2: 65, y2: 45,
+                    x3: 20
+                }
             });
 
-            view.sliderContainer.slick({
-                slidesToShow: 3,
-                centerMode: true,
-                variableWidth: true
-            }).on('beforeChange', () => {
-                !!view.el.querySelector('.slick-current video') && view.el.querySelector('.slick-current video').pause();
-                !!view.el.querySelector('.slick-current iframe') && view.pauseYoutube(view.el.querySelector('.slick-current iframe'));
-            }).on('afterChange', () => {
-                !!view.el.querySelector('.slick-current video') && window.innerWidth > 767 && view.el.querySelector('.slick-current video').play();
-                !!view.el.querySelector('.slick-current iframe') && window.innerWidth > 767 && view.playYoutube(view.el.querySelector('.slick-current iframe'));
+            // Stop Youtube videos from autoplaying on init (because the 'autoplay' option might be in the url unintendedly) except for currentSlide
+            slider.on('ready', () => view.el.querySelectorAll('iframe').forEach(element => {
+                element.closest('.is-selected')
+                    ? window.innerWidth > 767 && view.playYoutube(element)
+                    : view.pauseYoutube(element);
+            }));
+
+            slider.on('change', () => {
+                view.el.querySelectorAll('li:not(.is-selected) iframe').forEach(element => view.pauseYoutube(element));
+                const currentYTVideo = view.el.querySelector('.is-selected iframe')
+                !!currentYTVideo && view.playYoutube(currentYTVideo);
+
+                view.el.querySelectorAll('li:not(.is-selected) video').forEach(element => element.pause());
+                const currentVideo = view.el.querySelector('.is-selected video');
+                !!currentVideo && currentVideo.play();
             });
 
         },
@@ -93,12 +81,12 @@ project.slider = (() => {
         playWhenVisible() {
             const view = this;
 
-            const video = view.el.querySelector('.slick-current video');
+            const video = view.el.querySelector('.is-selected video');
             if (video && window.innerWidth > 767) view.isInViewport(video)
-                ? (console.log('playVideo'), !view.wasAutoplayed && (video.play(), view.wasAutoplayed = true))
-                : (console.log('pauseVideo'), video.pause());
+                ? !view.wasAutoplayed && (video.play(), view.wasAutoplayed = true)
+                : video.pause();
 
-            const iframe = view.el.querySelector('.slick-current iframe');
+            const iframe = view.el.querySelector('.is-selected iframe');
             if (iframe && window.innerWidth > 767) view.isInViewport(iframe)
                 ? !view.wasAutoplayed && (view.playYoutube(iframe), view.wasAutoplayed = true)
                 : view.pauseYoutube(iframe);

@@ -1,20 +1,9 @@
 .slider {
+    background: #c4d5e8;
     @include fontM;
     color: $white;
     text-align: center;
     overflow: hidden;
-
-    .glide {
-        color: red;
-    }
-
-    .glide__arrow--left {
-        left: -50px;
-    }
-
-    .glide__arrow--right {
-        right: -50px;
-    }
 
     h3 {
         @include fontXXL;
@@ -23,13 +12,10 @@
         margin-bottom: 40px;
     }
 
-    .slick-slide {
-        margin: 0 20px;
-    }
-
     li {
         height: 450px;
         position: relative;
+        margin: 0 20px;
         overflow: hidden;
         cursor: pointer;
 
@@ -81,12 +67,9 @@
             padding: 0 40px;
         }
 
-        .slick-slide {
-            margin: 0 10px;
-        }
-
         li {
             height: 300px;
+            margin: 0 10px;
 
             p {
                 width: 75%;
