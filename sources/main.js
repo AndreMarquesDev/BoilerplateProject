@@ -1,8 +1,4 @@
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-        .register('/serviceWorker.js')
-        .then(() => console.log('Service Worker registered'));
-}
+'serviceWorker' in navigator && navigator.serviceWorker.register('serviceWorker.js');
 
 const project = project || {};
 

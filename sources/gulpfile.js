@@ -12,7 +12,7 @@ const { series, parallel, src, dest, watch, start, task } = require('gulp'),
   rename = require('gulp-rename'),
   sass = require('gulp-sass'),
   sassGlob = require('gulp-sass-glob'),
-  wrap = require('gulp-wrap');
+  wrap = require('gulp-wrap'),
   fs = require('fs'),
   argv = require('yargs').argv;
 
