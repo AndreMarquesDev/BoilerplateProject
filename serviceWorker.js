@@ -1,8 +1,11 @@
-const cacheName = 'project',
+const cacheName = 'Project v1',
     filesToCache = [
         '/',
         '/index.html',
         '/css/main.css',
+        '/css/fonts/Lato-Regular.ttf',
+        '/css/fonts/Lato-Italic.ttf',
+        '/css/fonts/Lato-Bold.ttf',
         '/scripts/script.js',
         '/images/postal.jpg'
     ];

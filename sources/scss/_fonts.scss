@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Lato';
+    src:  url('fonts/Lato-Regular.ttf'),
+        url('fonts/Lato-Italic.ttf'),
+        url('fonts/Lato-Bold.ttf')
+}
+
 // Fonts //
 $font: 'Lato', sans-serif;
 $fontRegular: 400;
