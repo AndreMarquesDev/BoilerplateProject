@@ -114,8 +114,16 @@ project.utils = function () {
         };
 
         Object.defineProperty(HTMLElement.prototype, 'dataset', descriptor);
-      } // Append After Prototype
+      } // Remove polyfill
 
+
+      if (!('remove' in Element.prototype)) {
+        Element.prototype.remove = function () {
+          if (this.parentNode) this.parentNode.removeChild(this);
+        };
+      }
+
+      ; // Append After Prototype
 
       Element.prototype.appendAfter = function (element) {
         var _this = this;
@@ -1032,9 +1040,6 @@ project.utils = function () {
 
 
       setOrigin(container);
-      event.type === 'mouseenter' && isTimeToUpdate() && updateTransform(event);
-      event.type === 'mousemove' && updateTransform(event);
-      event.type === 'mouseleave' && (inner.style = '');
       container.addEventListener('mouseenter', function (event) {
         return isTimeToUpdate() && updateTransform(event);
       });

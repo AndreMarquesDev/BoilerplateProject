@@ -118,7 +118,14 @@ project.utils = (() => {
 				}
 
 				Object.defineProperty(HTMLElement.prototype, 'dataset', descriptor)
-			}
+            }
+
+            // Remove polyfill
+            if (!('remove' in Element.prototype)) {
+                Element.prototype.remove = function() {
+                    if (this.parentNode) this.parentNode.removeChild(this);
+                };
+            };
 
             // Append After Prototype
             Element.prototype.appendAfter = function(element) {
@@ -1040,10 +1047,6 @@ project.utils = (() => {
 
             // Allows to track the mouse position relatively to the center of the element
             setOrigin(container);
-
-            event.type === 'mouseenter' && isTimeToUpdate() && updateTransform(event);
-            event.type === 'mousemove' && updateTransform(event);
-            event.type === 'mouseleave' && (inner.style = '');
 
             container.addEventListener('mouseenter', event => isTimeToUpdate() && updateTransform(event));
             container.addEventListener('mousemove', event => updateTransform(event));
