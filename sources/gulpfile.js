@@ -153,47 +153,49 @@ exports.production = production;
 // -------------------------------------------------------------------------------------------------------- //
 
 // Create new modules
-const htmlTemplate = name => `<section class="${name}">
-  ${name}
+const htmlTemplate = name => `<section class="${name}" data-script="${name}">
+    <div class="wrapper">
+        ${name}
+    </div>
 </section>
 
 <script src="/scripts/core/${name}.js"></script>`;
+
 const cssTemplate = name => `.${name} {
 
 }`;
+
 const jsTemplate = name => `const project = project || {};
 
 project.${name} = () => {
-  return {
-    init(element, data) {
-      const view = this;
-      view.el = element;
-      view.data = data;
-      view.variables();
-      view.events();
-    },
-    variables() {
-      const view = this;
-    },
-    events() {
-      const view = this;
-    },
-  }
-};
 
-// nodeList forEach polyfill
-window.NodeList&&!NodeList.prototype.forEach&&(NodeList.prototype.forEach=function(o,t){t=t||window;for(var i=0;i<this.length;i++)o.call(t,this[i],i,this)});
+    return {
 
-for (let element of document.querySelectorAll('.${name}')) {
-  const data = element.dataset;
-  const obj = new project.${name};
-  obj.init(element, data);
-}`;
+        init(element, data) {
+            const view = this;
+            view.el = element;
+            view.data = data;
+
+            view.variables();
+            view.events();
+        },
+
+        variables() {
+            const view = this;
+        },
+
+        events() {
+            const view = this;
+        },
+
+    }
+
+};`;
 
 const newModule = callback => {
   const name = argv.name;
   if(typeof(name) !== 'string') {
-    console.log('Por favor especifique o nome no formato --name nome');
+    console.log('Please specify the name in the following format: --name name');
     callback();
     return;
   }
@@ -226,10 +228,11 @@ const newModule = callback => {
   }
   callback();
 }
+
 const newComponent = callback => {
   const name = argv.name;
   if(typeof(name) !== 'string') {
-    console.log('Por favor especifique o nome no formato --name nome');
+    console.log('Please specify the name in the following format: --name name');
     callback();
     return;
   }
