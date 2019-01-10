@@ -21,7 +21,7 @@ const buildModule = file => {
   return new Promise(resolve => {
     return src(file)
       .pipe(partials({ removeTags: true }))
-      .pipe(wrap({ src: 'moduleTemplate.html' }))
+      .pipe(wrap({ src: 'moduleBoilerplate.html' }))
       .pipe(rename({ dirname: '' }))
       .pipe(dest('../html'))
       .on('end', resolve)

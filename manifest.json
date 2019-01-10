@@ -2,7 +2,7 @@
   "lang" : "pt",
   "name": "Project",
   "short_name": "Project",
-  "description": "Starter file system template for a new project",
+  "description": "Starter kit boilerplate for a new project",
   "start_url": "/index.html",
   "display": "standalone",
   "orientation": "any",

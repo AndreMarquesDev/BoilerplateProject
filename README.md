@@ -1,7 +1,7 @@
-# Template Project
-Starter file system template for a new project
+# Boilerplate Project
+Starter kit boilerplate for a new project
 
-https://andremarquesdev.github.io/TemplateProject
+https://andremarquesdev.github.io/BoilerplateProject
 
 
 This is a Progressive Web App
