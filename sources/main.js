@@ -20,6 +20,10 @@ project.main = () => {
                     scriptsObject.init(element);
                 } else if (typeof project[script] === 'object') project[script].init(element);
             });
+
+            console.log('%c| 🔧 Developed by AndreMarquesDev ✏️ Designed by ... |', 'background: #000; color: #fff;');
+            console.log('%c| https://github.com/AndreMarquesDev |', 'background: #000; color: #fff;');
+            console.log('%c| https://codepen.io/AndreMarquesDev/ |', 'background: #000; color: #fff;');
         }
     }
 };
