@@ -30,8 +30,5 @@ MIT
 npm i
 
 # Run locally
-npm start
-
-# Build for production with minification
-npm run build
+npm start or gulp
 ```
